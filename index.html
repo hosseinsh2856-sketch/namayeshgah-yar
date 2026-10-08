@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#0b1220">
+<meta name="description" content="مدیریت نمایشگاه، خودروها، تماس‌ها و پیگیری فروش">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg">
+<title>نمایشگاه‌یار</title>
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--ink:#111827;--muted:#64748b;--line:#e5e7eb;--nav:#0b1220;--blue:#2563eb;--green:#16a34a;--orange:#ea580c;--red:#dc2626;--purple:#7c3aed;--shadow:0 8px 24px #0f172a10}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif}body{padding-bottom:82px}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+.top{background:linear-gradient(145deg,#07101f,#172554);color:#fff;padding:18px 15px 14px;position:sticky;top:0;z-index:20;box-shadow:0 5px 20px #0002}
+.brand{display:flex;align-items:center;justify-content:space-between}.brand h1{font-size:21px;margin:0}.brand small{color:#cbd5e1}
+.search{margin-top:13px;position:relative}.search input{width:100%;border:0;border-radius:15px;padding:14px 43px 14px 13px;outline:0;background:#fff;color:#111827;font-size:14px}.search span{position:absolute;right:14px;top:12px;font-size:19px}
+main{max-width:900px;margin:auto;padding:12px}
+.view{display:none}.view.active{display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}.stat{background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px 9px;box-shadow:var(--shadow)}.stat b{font-size:19px;display:block}.stat small{font-size:10px;color:var(--muted)}.s1 b{color:var(--blue)}.s2 b{color:var(--green)}.s3 b{color:var(--orange)}.s4 b{color:var(--purple)}
+.section-title{display:flex;justify-content:space-between;align-items:center;margin:13px 2px 9px}.section-title h2{font-size:16px;margin:0}.section-title button{background:var(--blue);color:#fff;border:0;border-radius:11px;padding:9px 12px;font-size:12px;font-weight:bold}
+.card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;margin-bottom:9px;box-shadow:var(--shadow)}
+.showroom-card{position:relative}.showroom-name{font-size:16px;font-weight:800}.contact{color:#0369a1;text-decoration:none;font-size:12px;margin-top:5px;display:inline-block}.muted{color:var(--muted);font-size:11px}.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.chip{background:#f1f5f9;border-radius:20px;padding:6px 9px;font-size:10px;color:#475569}.chip.green{background:#dcfce7;color:#166534}.chip.blue{background:#dbeafe;color:#1d4ed8}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.actions{display:flex;gap:6px;margin-top:11px}.btn{border:1px solid var(--line);background:#fff;border-radius:11px;padding:9px 11px;font-size:11px;font-weight:bold}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.green{background:#ecfdf5;border-color:#bbf7d0;color:#166534}.btn.red{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+.car-card{padding:12px}.car-title{font-size:15px;font-weight:800}.car-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.car-meta span{font-size:10px;background:#f8fafc;border:1px solid #eef2f7;padding:5px 7px;border-radius:8px}.sold{opacity:.55}.sold .car-title{text-decoration:line-through}.soldBadge{background:#dcfce7!important;color:#166534!important;border-color:#bbf7d0!important}
+.tabs{display:flex;gap:7px;overflow:auto;padding-bottom:4px;margin-bottom:10px}.tab{white-space:nowrap;border:1px solid var(--line);background:#fff;color:var(--muted);padding:8px 12px;border-radius:20px;font-size:11px}.tab.active{background:var(--nav);color:#fff;border-color:var(--nav)}
+.empty{text-align:center;padding:45px 15px;color:var(--muted);font-size:13px}.empty .big{font-size:38px;margin-bottom:8px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);height:70px;z-index:30;display:grid;grid-template-columns:repeat(3,1fr);padding-bottom:env(safe-area-inset-bottom)}.navbtn{border:0;background:transparent;color:#94a3b8;font-size:10px}.navbtn b{display:block;font-size:21px;margin-bottom:2px}.navbtn.active{color:var(--blue)}
+.fab{position:fixed;left:16px;bottom:82px;width:55px;height:55px;border:0;border-radius:18px;background:var(--blue);color:#fff;font-size:28px;box-shadow:0 10px 25px #2563eb45;z-index:15}
+.modal{display:none;position:fixed;inset:0;background:#02061799;z-index:50;align-items:flex-end}.modal.open{display:flex}.sheet{background:#fff;width:100%;max-width:700px;margin:auto 0 0;border-radius:23px 23px 0 0;padding:18px;max-height:92vh;overflow:auto}.sheet h2{font-size:18px;margin:0 0 13px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.field{font-size:11px;color:var(--muted);font-weight:bold}.field input,.field textarea,.field select{width:100%;margin-top:5px;border:1px solid #d7dee8;border-radius:11px;padding:11px;background:#fbfdff;outline:0}.field textarea{min-height:72px}.full{grid-column:1/-1}.formBtns{display:flex;gap:8px;margin-top:13px}.formBtns button{flex:1;padding:12px;border-radius:12px;border:0;font-weight:bold}.formBtns .save{background:var(--blue);color:#fff}.formBtns .cancel{background:#f1f5f9}
+.toast{position:fixed;top:75px;left:50%;transform:translate(-50%,-15px);background:#111827;color:#fff;padding:10px 15px;border-radius:11px;font-size:11px;opacity:0;transition:.2s;z-index:80}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.full{grid-column:auto}.sheet{padding-bottom:calc(18px + env(safe-area-inset-bottom))}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand"><div><h1>🚘 نمایشگاه‌یار</h1><small>مدیریت سریع نمایشگاه و خودروها</small></div><div>⋮</div></div>
+  <div class="search"><span>🔎</span><input id="search" placeholder="جستجوی نمایشگاه، ماشین، مدل یا شماره..." autocomplete="off"></div>
+</header>
+
+<main>
+<section id="dashboard" class="view active">
+  <div class="stats">
+    <div class="stat s1"><small>نمایشگاه‌ها</small><b id="showCount">0</b></div>
+    <div class="stat s2"><small>ماشین‌های موجود</small><b id="carCount">0</b></div>
+    <div class="stat s3"><small>فروخته‌شده</small><b id="soldCount">0</b></div>
+    <div class="stat s4"><small>کل ماشین‌ها</small><b id="allCarCount">0</b></div>
+  </div>
+  <div class="section-title"><h2>🏢 نمایشگاه‌ها</h2><button onclick="openShowroom()">＋ نمایشگاه جدید</button></div>
+  <div id="showrooms"></div>
+</section>
+
+<section id="cars" class="view">
+  <div class="section-title"><h2>🚗 همه ماشین‌ها</h2></div>
+  <div class="tabs">
+    <button class="tab active" data-filter="all" onclick="setCarFilter('all',this)">همه</button>
+    <button class="tab" data-filter="available" onclick="setCarFilter('available',this)">🟢 موجود</button>
+    <button class="tab" data-filter="sold" onclick="setCarFilter('sold',this)">✅ فروخته‌شده</button>
+  </div>
+  <div id="carsList"></div>
+</section>
+
+<section id="settings" class="view">
+  <div class="section-title"><h2>⚙️ ابزارها</h2></div>
+  <div class="card">
+    <div class="row"><b>پشتیبان‌گیری</b><span class="muted">ذخیره همه اطلاعات</span></div>
+    <div class="actions"><button class="btn primary" onclick="backup()">📤 خروجی پشتیبان</button><button class="btn" onclick="document.getElementById('importFile').click()">📥 بازیابی</button></div>
+  </div>
+  <div class="card">
+    <b>حریم اطلاعات</b><p class="muted">اطلاعات این نسخه داخل حافظه مرورگر دستگاه ذخیره می‌شود و برای کار کردن نیازی به اینترنت ندارد.</p>
+  </div>
+  <div class="card">
+    <b>پاک‌سازی</b><p class="muted">حذف همه اطلاعات غیرقابل برگشت است؛ قبل از آن از اطلاعات خروجی بگیر.</p><button class="btn red" onclick="wipe()">🗑 حذف همه اطلاعات</button>
+  </div>
+</section>
+</main>
+
+<button class="fab" onclick="quickAdd()" aria-label="افزودن">＋</button>
+<nav class="bottom">
+  <button class="navbtn active" onclick="nav('dashboard',this)"><b>🏠</b>خانه</button>
+  <button class="navbtn" onclick="nav('cars',this)"><b>🚗</b>ماشین‌ها</button>
+  <button class="navbtn" onclick="nav('settings',this)"><b>⚙️</b>ابزارها</button>
+</nav>
+
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div class="sheet">
+<h2 id="modalTitle">افزودن نمایشگاه</h2>
+<form id="form"><div class="grid" id="fields"></div><div class="formBtns"><button class="cancel" type="button" onclick="closeModal()">انصراف</button><button class="save" type="submit">ذخیره</button></div></form>
+</div></div>
+<input id="importFile" type="file" accept=".json" hidden>
+<div id="toast" class="toast"></div>
+
+<script>
+const KEY="showroom_yar_v1";
+let db=JSON.parse(localStorage.getItem(KEY)||'{"showrooms":[],"cars":[]}');
+let mode="",editId=null,carFilter="all";
+const $=id=>document.getElementById(id);
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
+function toast(s){let t=$("toast");t.textContent=s;t.classList.add("show");clearTimeout(window.t);window.t=setTimeout(()=>t.classList.remove("show"),1500)}
+function nav(id,el){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));$(id).classList.add("active");document.querySelectorAll(".navbtn").forEach(x=>x.classList.remove("active"));el.classList.add("active");render()}
+$("search").oninput=render;
+
+function openShowroom(id=null){
+ mode="showroom";editId=id;$("modalTitle").textContent=id?"✏️ ویرایش نمایشگاه":"🏢 نمایشگاه جدید";
+ let x=id?db.showrooms.find(s=>s.id===id):{};
+ $("fields").innerHTML=`<label class="field">نام نمایشگاه<input id="fName" required value="${esc(x.name)}" placeholder="مثلاً اتو گلستان"></label>
+ <label class="field">شماره تماس<input id="fPhone" inputmode="tel" value="${esc(x.phone)}" placeholder="0911..."></label>
+ <label class="field full">آدرس / توضیحات<textarea id="fNotes" placeholder="آدرس، اینستاگرام، توضیحات...">${esc(x.notes)}</textarea></label>`;
+ $("modal").classList.add("open");$("fName").focus()
+}
+function openCar(id=null,showroomId=null){
+ mode="car";editId=id;$("modalTitle").textContent=id?"✏️ ویرایش خودرو":"🚗 افزودن خودرو";
+ let x=id?db.cars.find(c=>c.id===id):{};
+ let options=db.showrooms.map(s=>`<option value="${s.id}" ${(x.showroomId||showroomId)==s.id?"selected":""}>${esc(s.name)}</option>`).join("");
+ $("fields").innerHTML=`<label class="field">نمایشگاه<select id="fShowroom" required>${options||'<option value="">اول نمایشگاه بساز</option>'}</select></label>
+ <label class="field">نام خودرو<input id="fCar" required value="${esc(x.car)}" placeholder="پژو پارس"></label>
+ <label class="field">مدل<input id="fModel" value="${esc(x.model)}" placeholder="1400"></label>
+ <label class="field">قیمت<input id="fPrice" inputmode="numeric" value="${esc(x.price)}" placeholder="950"></label>
+ <label class="field full">توضیحات<textarea id="fNotes" placeholder="رنگ، کارکرد، وضعیت...">${esc(x.notes)}</textarea></label>`;
+ $("modal").classList.add("open");$("fCar").focus()
+}
+function quickAdd(){db.showrooms.length?openCar(null,db.showrooms[0].id):openShowroom()}
+function closeModal(){$("modal").classList.remove("open")}
+$("form").onsubmit=e=>{
+ e.preventDefault();
+ if(mode==="showroom"){
+  let x={id:editId||uid(),name:$("fName").value.trim(),phone:$("fPhone").value.trim(),notes:$("fNotes").value.trim()};
+  if(editId)Object.assign(db.showrooms.find(s=>s.id===editId),x);else db.showrooms.unshift(x);
+  toast(editId?"نمایشگاه ویرایش شد ✓":"نمایشگاه اضافه شد ✓");
+ }else{
+  let x={id:editId||uid(),showroomId:$("fShowroom").value,car:$("fCar").value.trim(),model:$("fModel").value.trim(),price:$("fPrice").value.trim(),notes:$("fNotes").value.trim(),sold:editId?db.cars.find(c=>c.id===editId).sold:false};
+  if(editId)Object.assign(db.cars.find(c=>c.id===editId),x);else db.cars.unshift(x);
+  toast(editId?"خودرو ویرایش شد ✓":"خودرو اضافه شد ✓");
+ }
+ localStorage.setItem(KEY,JSON.stringify(db));closeModal();render()
+};
+function deleteShowroom(id){
+ const count=db.cars.filter(c=>c.showroomId===id).length;
+ if(confirm(`این نمایشگاه و ${count} ماشین وابسته به آن حذف شوند؟`)){db.showrooms=db.showrooms.filter(s=>s.id!==id);db.cars=db.cars.filter(c=>c.showroomId!==id);save();toast("حذف شد")}
+}
+function deleteCar(id){if(confirm("این خودرو حذف شود؟")){db.cars=db.cars.filter(c=>c.id!==id);save();toast("خودرو حذف شد")}}
+function toggleSold(id){let c=db.cars.find(x=>x.id===id);c.sold=!c.sold;save();toast(c.sold?"فروخته‌شده ثبت شد ✓":"به موجودی برگشت")}
+function setCarFilter(v,el){carFilter=v;document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));el.classList.add("active");renderCars()}
+function showroomName(id){return db.showrooms.find(s=>s.id===id)?.name||"بدون نمایشگاه"}
+function render(){
+ $("showCount").textContent=db.showrooms.length;
+ $("carCount").textContent=db.cars.filter(c=>!c.sold).length;
+ $("soldCount").textContent=db.cars.filter(c=>c.sold).length;
+ $("allCarCount").textContent=db.cars.length;
+ renderShowrooms();renderCars()
+}
+function renderShowrooms(){
+ const q=$("search").value.trim().toLowerCase();
+ const list=db.showrooms.filter(s=>(s.name+" "+s.phone+" "+s.notes).toLowerCase().includes(q));
+ $("showrooms").innerHTML=list.length?list.map(s=>{
+  const cars=db.cars.filter(c=>c.showroomId===s.id),avail=cars.filter(c=>!c.sold).length;
+  return `<div class="card showroom-card"><div class="row"><div><div class="showroom-name">${esc(s.name)}</div>${s.phone?`<a class="contact" href="tel:${esc(s.phone)}">📞 ${esc(s.phone)}</a>`:""}</div><span class="chip blue">${cars.length} ماشین</span></div>
+  <div class="chips"><span class="chip green">🟢 ${avail} موجود</span><span class="chip">✅ ${cars.length-avail} فروخته</span></div>
+  <div class="actions"><button class="btn primary" onclick="openCar(null,'${s.id}')">＋ ماشین</button><button class="btn" onclick="openShowroom('${s.id}')">✏️</button><button class="btn red" onclick="deleteShowroom('${s.id}')">🗑</button></div></div>`
+ }).join(""):`<div class="empty"><div class="big">🏢</div>هنوز نمایشگاهی ثبت نکردی.<br><button class="btn primary" onclick="openShowroom()">＋ ثبت اولین نمایشگاه</button></div>`
+}
+function renderCars(){
+ const q=$("search").value.trim().toLowerCase();
+ let list=db.cars.filter(c=>(c.car+" "+c.model+" "+c.price+" "+c.notes+" "+showroomName(c.showroomId)).toLowerCase().includes(q));
+ if(carFilter==="sold")list=list.filter(c=>c.sold);if(carFilter==="available")list=list.filter(c=>!c.sold);
+ $("carsList").innerHTML=list.length?list.map(c=>`<div class="card car-card ${c.sold?"sold":""}">
+ <div class="row"><div><div class="car-title">${esc(c.car)} ${c.model?`— ${esc(c.model)}`:""}</div><div class="muted">🏢 ${esc(showroomName(c.showroomId))}</div></div><span class="chip ${c.sold?"soldBadge":"green"}">${c.sold?"✅ فروخته":"🟢 موجود"}</span></div>
+ <div class="car-meta">${c.price?`<span>💰 ${esc(c.price)}</span>`:""}${c.notes?`<span>📝 ${esc(c.notes)}</span>`:""}</div>
+ <div class="actions"><button class="btn green" onclick="toggleSold('${c.id}')">${c.sold?"↩️ بازگشت":"✓ ثبت فروش"}</button><button class="btn" onclick="openCar('${c.id}')">✏️</button><button class="btn red" onclick="deleteCar('${c.id}')">🗑</button></div></div>`).join(""):`<div class="empty"><div class="big">🚗</div>ماشینی پیدا نشد.</div>`
+}
+function backup(){
+ const blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),a=document.createElement("a");
+ a.href=URL.createObjectURL(blob);a.download="پشتیبان-نمایشگاه‌یار.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast("پشتیبان ذخیره شد ✓")
+}
+$("importFile").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!d.showrooms||!d.cars)throw 0;if(confirm("اطلاعات فعلی با پشتیبان جایگزین شود؟")){db=d;save();toast("بازیابی شد ✓")}}catch{alert("فایل پشتیبان معتبر نیست")}};r.readAsText(f);e.target.value=""}
+function wipe(){if(confirm("همه نمایشگاه‌ها و ماشین‌ها حذف شوند؟")){db={showrooms:[],cars:[]};save();toast("همه اطلاعات حذف شد")}}
+render();
+if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+</script>
+</body>
+</html>
